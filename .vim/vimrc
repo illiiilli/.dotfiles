@@ -48,7 +48,7 @@ inoremap jj <Esc>
 
 " FUNCTIONS
 "
-function! 
+" function! 
 
 " Map <F5> to compile files to .pdf
 " Markdown
