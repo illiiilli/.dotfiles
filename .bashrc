@@ -156,8 +156,6 @@ _open_files_for_editing() {
 
 # alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
 ################################################################################
-alias config='/usr/bin/git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
-alias win_config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
