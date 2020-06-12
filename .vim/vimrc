@@ -21,6 +21,7 @@ call plug#begin()
     Plug 'https://github.com/tpope/vim-characterize'
     Plug 'vim-utils/vim-troll-stopper'
     Plug 'https://github.com/sheerun/vim-polyglot'
+    Plug 'https://github.com/airblade/vim-gitgutter'
 call plug#end()
 
 " Alan's modifications start here:
@@ -65,5 +66,5 @@ augroup END
 highlight TrollStopper ctermbg = red guibg = #FF0000
 
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set fileformats=unix,dos,mac
