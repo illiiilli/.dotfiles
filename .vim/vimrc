@@ -32,9 +32,11 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
-
+" Numbers on the side
 set relativenumber
 set number
+set hidden
+set hlsearch
 
 if has('gui_running')
     set guioptions-=T  "remove toolbar
