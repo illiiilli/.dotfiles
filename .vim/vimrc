@@ -22,6 +22,11 @@ call plug#begin()
     Plug 'vim-utils/vim-troll-stopper'
     Plug 'https://github.com/sheerun/vim-polyglot'
     Plug 'https://github.com/airblade/vim-gitgutter'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/vim-peekaboo'
+call plug#end()
+call plug#end()
 call plug#end()
 
 " Alan's modifications start here:
