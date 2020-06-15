@@ -45,11 +45,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init("/home/illiiilli/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "konsole" or "xterm"
+editor = os.getenv("EDITOR") or "vim" or  "nano"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
