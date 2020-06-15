@@ -51,6 +51,7 @@ beautiful.init("/home/illiiilli/.config/awesome/theme.lua")
 terminal = "konsole" or "xterm"
 editor = os.getenv("EDITOR") or "vim" or  "nano"
 editor_cmd = terminal .. " -e " .. editor
+browser = os.getenv("BROWSER") or "brave" or "chromium" or "firefox"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -335,7 +336,12 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- User defined keybindings
+    awful.key({ modkey,           },      "b", function () awful.spawn(browser) end,
+              {description = "open a browser", group = "apps"})
+
 )
 
 clientkeys = gears.table.join(
