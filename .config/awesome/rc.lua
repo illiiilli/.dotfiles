@@ -95,6 +95,9 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
+praisewidget = wibox.widget.textbox()
+praisewidget.text = "Wow!"
+
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
@@ -208,6 +211,8 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+            praisewidget, 
+            -- The following line is new
             s.mytaglist,
             s.mypromptbox,
         },
