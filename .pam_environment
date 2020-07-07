@@ -1,0 +1,10 @@
+#
+# .pam_environment
+#
+
+# See also: 
+# $ fcitx-diagnose
+# https://wiki.archlinux.org/index.php/Fcitx#Desktop_Environment_Autostart
+XMODIFIERS DEFAULT=@im=fcitx
+QT_IM_MODULE DEFAULT=fcitx
+GTK_IM_MODULE DEFAULT=fcitx
