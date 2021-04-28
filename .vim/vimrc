@@ -11,22 +11,20 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-    Plug 'https://github.com/tpope/vim-sensible'
-    Plug 'https://github.com/nanotech/jellybeans.vim'
-    Plug 'https://github.com/tpope/vim-surround'
-    Plug 'https://github.com/tpope/vim-repeat'
-    Plug 'https://github.com/junegunn/goyo.vim'
-    Plug 'https://github.com/tpope/vim-commentary'
-    Plug 'https://github.com/itchyny/lightline.vim'
-    Plug 'https://github.com/tpope/vim-characterize'
-    Plug 'vim-utils/vim-troll-stopper'
-    Plug 'https://github.com/sheerun/vim-polyglot'
-    Plug 'https://github.com/airblade/vim-gitgutter'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/goyo.vim'
     Plug 'junegunn/vim-peekaboo'
-call plug#end()
-call plug#end()
+    Plug 'nanotech/jellybeans.vim'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'tpope/vim-characterize'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-surround'
+    Plug 'vim-utils/vim-troll-stopper'
 call plug#end()
 
 " Alan's modifications start here:
