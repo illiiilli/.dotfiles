@@ -26,6 +26,7 @@ call plug#begin()
     Plug 'sheerun/vim-polyglot'
     Plug 'tpope/vim-characterize'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-surround'
@@ -55,6 +56,7 @@ set number
 set hidden
 set hlsearch
 
+" UI Stuff
 if has('gui_running')
     set guioptions-=T  "remove toolbar
     " Sets font to M+ mn
@@ -63,8 +65,18 @@ endif
 
 colorscheme jellybeans
 
+" Keyboard mapping stuff
+
 " Remaps "jj" to <Esc> while in insert mode
 inoremap jj <Esc>
+" Remap Leader key
+map <Space> <Leader>
+
+" fzf related binds
+" https://levelup.gitconnected.com/improving-vim-workflow-with-fzf-3f8bedaca1b2
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <C-g> :Rg<Cr>
+nnoremap <silent><leader>b :Buffers<CR>
 
 " Split management
 " Partially inspired by: https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
@@ -77,8 +89,6 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" Remap Leader key
-map <Space> <Leader>
 
 " vimwiki stuff
 let wiki_1 = {}
