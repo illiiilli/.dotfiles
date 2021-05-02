@@ -23,6 +23,7 @@ call plug#begin()
     Plug 'junegunn/vim-peekaboo'
     Plug 'mantiz/vim-plugin-dirsettings'
     Plug 'mattn/calendar-vim'
+    Plug 'preservim/vim-textobj-sentence'
     Plug 'sheerun/vim-polyglot'
     Plug 'tpope/vim-characterize'
     Plug 'tpope/vim-commentary'
@@ -147,3 +148,6 @@ endf
 
 map <F7> :call ChangeSpellLang()<CR>
 imap <F7> <C-o>:call ChangeSpellLang()<CR>
+
+" https://thoughtbot.com/blog/vim-spell-checking
+autocmd BufRead,BufNewFile *.md setlocal spell
