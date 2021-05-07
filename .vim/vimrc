@@ -75,8 +75,8 @@ map <Space> <Leader>
 
 " fzf related binds
 " https://levelup.gitconnected.com/improving-vim-workflow-with-fzf-3f8bedaca1b2
-nnoremap <C-p> :GFiles<Cr>
 nnoremap <C-g> :Rg<Cr>
+nnoremap <C-p> :GFiles<Cr>
 nnoremap <silent><leader>b :Buffers<CR>
 
 " Split management
