@@ -90,6 +90,8 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+" cursorline
+set cursorline
 
 " vimwiki stuff
 let wiki_1 = {}
@@ -111,6 +113,10 @@ let g:vimwiki_auto_header = 1
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_url_maxsave = 40
+
+" Persistent Undo
+set undofile
+set undodir=$HOME/.vim/undodir
 
 " FUNCTIONS
 "
@@ -152,3 +158,6 @@ imap <F7> <C-o>:call ChangeSpellLang()<CR>
 
 " https://thoughtbot.com/blog/vim-spell-checking
 autocmd BufRead,BufNewFile *.md setlocal spell
+
+" gotta go fast
+set lazyredraw
