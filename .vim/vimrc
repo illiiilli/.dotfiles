@@ -17,6 +17,7 @@ call plug#begin()
     Plug 'nanotech/jellybeans.vim'
     " Functional
     Plug 'airblade/vim-gitgutter'
+    Plug 'dense-analysis/ale'
     Plug 'ferrine/md-img-paste.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -25,6 +26,13 @@ call plug#begin()
     Plug 'mattn/calendar-vim'
     Plug 'preservim/vim-textobj-sentence'
     Plug 'sheerun/vim-polyglot'
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
     Plug 'tpope/vim-characterize'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
@@ -33,9 +41,15 @@ call plug#begin()
     Plug 'tpope/vim-surround'
     Plug 'vim-utils/vim-troll-stopper'
     Plug 'vimwiki/vimwiki'
+    " Snips
+    " Plug 'honza/vim-snippets'
+    " Plug 'SirVer/ultisnips'
 call plug#end()
 
 call dirsettings#Install()
+
+" For deoplete
+let g:deoplete#enable_at_startup = 1
 
 " For ferrine/md-img-paste.vim
 autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
@@ -113,6 +127,21 @@ let g:vimwiki_auto_header = 1
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_url_maxsave = 40
+
+" ALE stuff
+
+" Only lint when saving a file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+
+let g:ale_linters = {
+\   'python': ['flake8', 'pydocstyle', 'bandit', 'mypy']
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'isort']
+\}
 
 " Persistent Undo
 set undofile
