@@ -26,13 +26,14 @@ call plug#begin()
     Plug 'mattn/calendar-vim'
     Plug 'preservim/vim-textobj-sentence'
     Plug 'sheerun/vim-polyglot'
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
+    " if has('nvim')
+    "     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " else
+    "     Plug 'Shougo/deoplete.nvim'
+    "     Plug 'roxma/nvim-yarp'
+    "     Plug 'roxma/vim-hug-neovim-rpc'
+    " endif
+    Plug 'takac/vim-hardtime'
     Plug 'tpope/vim-characterize'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
@@ -48,8 +49,11 @@ call plug#end()
 
 call dirsettings#Install()
 
+" For vim-hardtime
+let g:hardtime_default_on = 1
+
 " For deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " For ferrine/md-img-paste.vim
 autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
