@@ -93,9 +93,10 @@ map <Space> <Leader>
 
 " fzf related binds
 " https://levelup.gitconnected.com/improving-vim-workflow-with-fzf-3f8bedaca1b2
-nnoremap <C-g> :Rg<Cr>
-nnoremap <C-p> :GFiles<Cr>
 nnoremap <silent><leader>b :Buffers<CR>
+nnoremap <silent><leader>f :Files<CR>
+nnoremap <silent><leader>g :Rg<CR>
+nnoremap <silent><C-p> :GFiles<CR>
 
 " Split management
 " Partially inspired by: https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
@@ -173,6 +174,7 @@ set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set fileformats=unix,dos,mac
 
+" Spelling related stuff
 " switch spellcheck languages
 " https://vim.fandom.com/wiki/Toggle_spellcheck_with_function_keys
 let g:myLang = 0
@@ -186,8 +188,13 @@ function! ChangeSpellLang()
   echo "language:" g:myLangList[g:myLang]
 endf
 
-map <F7> :call ChangeSpellLang()<CR>
-imap <F7> <C-o>:call ChangeSpellLang()<CR>
+" Mnemonic: Spell Change
+nnoremap <silent><leader>sc <C-o>:call ChangeSpellLang()<CR>>
+inoremap <silent><leader>sc <C-o>:call ChangeSpellLang()<CR>>
+
+" Autofix last spelling mistake
+" Mnemonic: Spell Last
+inoremap <leader>sl <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " https://thoughtbot.com/blog/vim-spell-checking
 autocmd BufRead,BufNewFile *.md setlocal spell
