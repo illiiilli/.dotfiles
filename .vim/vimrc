@@ -74,12 +74,22 @@ set relativenumber
 set number
 set hidden
 set hlsearch
+" cursorline
+set cursorline
+set scrolloff=8
+set noerrorbells
+set colorcolumn=80
+set signcolumn=yes
 
 " UI Stuff
 if has('gui_running')
     set guioptions-=T  "remove toolbar
     " Sets font to M+ mn
-    set guifont=M+_1m:h11:cSHIFTJIS:qDRAFT
+    if has('nvim')
+        set Guifont=M+_1m:h11:cSHIFTJIS:qDRAFT
+    else
+        set guifont=M+_1m:h11:cSHIFTJIS:qDRAFT
+    endif
 endif
 
 colorscheme jellybeans
@@ -99,7 +109,8 @@ nnoremap <silent><leader>g :Rg<CR>
 nnoremap <silent><C-p> :GFiles<CR>
 
 " Split management
-" Partially inspired by: https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
+" Partially inspired by:
+" https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
 " Moving between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -109,29 +120,35 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" cursorline
-set cursorline
-
 " vimwiki stuff
 let wiki_1 = {}
-let wiki_1.ext = '.md'
+let wiki_1.ext = '.Rmd'
 let wiki_1.index = 'README'
 let wiki_1.path = '~/vimwiki/'
 let wiki_1.path_html = '~/vimwiki_html/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.links_space_char = '_'
 let wiki_1.auto_tags = 1
-" let wiki_1.auto_diary_index = 1
-" let wiki_1.auto_generate_links = 1
-" let wiki_1.auto_generate_tags = 1
+let wiki_1.auto_diary_index = 1
+let wiki_1.auto_generate_links = 1
+let wiki_1.auto_generate_tags = 1
 
 let g:vimwiki_list = [wiki_1]
 
 let g:vimwiki_auto_chdir = 1
 let g:vimwiki_auto_header = 1
 let g:vimwiki_folding = 'expr'
+let g:vimwiki_global_ext = 1
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_url_maxsave = 40
+
+let g:vimwiki_ext2syntax = {'.Rmd': 'markdown',
+                        \'.markdown': 'markdown',
+                        \'.md': 'markdown',
+                        \'.mdown': 'markdown',
+                        \'.mdwn': 'markdown',
+                        \'.mkdn': 'markdown',
+                        \'.mw': 'media'}
 
 " ALE stuff
 
