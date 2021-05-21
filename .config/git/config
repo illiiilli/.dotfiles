@@ -12,3 +12,5 @@
 	process = git-lfs filter-process
 	required = true
 	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = master
