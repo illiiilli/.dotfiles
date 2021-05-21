@@ -122,7 +122,7 @@ set splitright
 
 " vimwiki stuff
 let wiki_1 = {}
-let wiki_1.ext = '.Rmd'
+let wiki_1.ext = '.md'
 let wiki_1.index = 'README'
 let wiki_1.path = '~/vimwiki/'
 let wiki_1.path_html = '~/vimwiki_html/'
