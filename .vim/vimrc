@@ -210,13 +210,13 @@ function! ChangeSpellLang()
   echo "language:" g:myLangList[g:myLang]
 endf
 
-" Mnemonic: Spell Change
-nnoremap <silent><leader>sc <C-o>:call ChangeSpellLang()<CR>>
-inoremap <silent><leader>sc <C-o>:call ChangeSpellLang()<CR>>
+" Mnemonic: Spell Lang
+nnoremap <silent><leader>sl <C-o>:call ChangeSpellLang()<CR>>
+inoremap <silent><leader>sl <C-o>:call ChangeSpellLang()<CR>>
 
 " Autofix last spelling mistake
-" Mnemonic: Spell Last
-inoremap <leader>sl <c-g>u<Esc>[s1z=`]a<c-g>u
+" Mnemonic: Spell Fix
+inoremap <leader>sf <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " https://thoughtbot.com/blog/vim-spell-checking
 autocmd BufRead,BufNewFile *.md setlocal spell
