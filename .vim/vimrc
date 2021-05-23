@@ -142,7 +142,7 @@ let g:vimwiki_list = [wiki_1]
 let g:vimwiki_auto_chdir = 1
 let g:vimwiki_auto_header = 1
 let g:vimwiki_folding = 'expr'
-let g:vimwiki_global_ext = 1
+let g:vimwiki_global_ext = 0
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_url_maxsave = 40
 
@@ -152,7 +152,8 @@ let g:vimwiki_ext2syntax = {'.Rmd': 'markdown',
                         \'.mdown': 'markdown',
                         \'.mdwn': 'markdown',
                         \'.mkdn': 'markdown',
-                        \'.mw': 'media'}
+                        \'.mw': 'media'
+                        \}
 
 " ALE stuff
 
