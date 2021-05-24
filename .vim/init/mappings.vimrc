@@ -23,7 +23,7 @@ inoremap jj <Esc>
 " Sample: 02:28:23
 " Mnemonic: Print Time
 nnoremap <leader>pt "=strftime('%T')<CR>P
-inoremap <leader>pt :put =strftime('%T')
+inoremap <leader>pt <C-R>=strftime('%T')<CR>
 " Sample: 2021-05-25 02:25:46
 " Mnemonic: Print DateTime
 nnoremap <leader>pdt "=strftime('%c')<CR>P
