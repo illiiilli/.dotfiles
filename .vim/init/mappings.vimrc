@@ -22,10 +22,12 @@ inoremap jj <Esc>
 " Printing time
 " Sample: 02:28:23
 " Mnemonic: Print Time
+nnoremap <leader>pt "=strftime('%T')<CR>P
 inoremap <leader>pt :put =strftime('%T')
 " Sample: 2021-05-25 02:25:46
 " Mnemonic: Print DateTime
-inoremap <leader>pdt :put =strftime('%c')
+nnoremap <leader>pdt "=strftime('%c')<CR>P
+inoremap <leader>pdt <C-R>=strftime('%c')<CR>
  
 " fzf related binds
 " https://levelup.gitconnected.com/improving-vim-workflow-with-fzf-3f8bedaca1b2
