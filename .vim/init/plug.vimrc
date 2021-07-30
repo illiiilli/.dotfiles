@@ -19,6 +19,7 @@ call plug#begin()
     Plug 'ferrine/md-img-paste.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/vim-emoji'
     Plug 'junegunn/vim-peekaboo'
     Plug 'mantiz/vim-plugin-dirsettings'
     Plug 'mattn/calendar-vim'

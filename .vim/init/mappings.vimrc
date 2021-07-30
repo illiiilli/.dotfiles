@@ -64,3 +64,6 @@ augroup Markup_Mappings
     " Replaces 0 width space (<200b>) with <space>
     autocmd Filetype markdown map <F4> :%s/\%u200b/<space>/g<Enter>
 augroup END
+
+
+nnoremap <leader>er :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
