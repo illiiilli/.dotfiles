@@ -20,6 +20,11 @@ inoremap <leader>sf <c-g>u<Esc>[s1z=`]a<c-g>u
 inoremap jj <Esc>
 
 " Printing time
+" https://vim.fandom.com/wiki/Insert_current_date_or_time
+" Sample: 02:28:23
+" Mnemonic: Print Date
+nnoremap <leader>pt "=strftime('%Y-%m-%d')<CR>P
+inoremap <leader>pt <C-R>=strftime('%Y-%m-%d')<CR>
 " Sample: 02:28:23
 " Mnemonic: Print Time
 nnoremap <leader>pt "=strftime('%T')<CR>P
