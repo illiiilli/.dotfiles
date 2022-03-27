@@ -7,10 +7,10 @@
 
 [[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
 
-_set_my_PS1() {
+_set_liveuser_PS1() {
     PS1='[\u@\h \W]\$ '
     if [ "$(whoami)" = "liveuser" ] ; then
-        local iso_version="$(grep ^VERSION= /etc/os-release | cut -d '=' -f 2)"
+        local iso_version="$(grep ^VERSION= /usr/lib/endeavouros-release 2>/dev/null | cut -d '=' -f 2)"
         if [ -n "$iso_version" ] ; then
             local prefix="eos-"
             local iso_info="$prefix$iso_version"
@@ -18,8 +18,18 @@ _set_my_PS1() {
         fi
     fi
 }
-_set_my_PS1
-unset -f _set_my_PS1
+_set_liveuser_PS1
+unset -f _set_liveuser_PS1
+
+ShowInstallerIsoInfo() {
+    local file=/usr/lib/endeavouros-release
+    if [ -r $file ] ; then
+        cat $file
+    else
+        echo "Sorry, installer ISO info is not available." >&2
+    fi
+}
+
 
 alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
@@ -37,115 +47,32 @@ bind '"\e[B":history-search-forward'
 ################################################################################
 ## Some generally useful functions.
 ## Consider uncommenting aliases below to start using these functions.
-
-
-_GeneralCmdCheck() {
-    # A helper for functions UpdateArchPackages and UpdateAURPackages.
-
-    echo "$@" >&2
-    "$@" || {
-        echo "Error: '$*' failed." >&2
-        exit 1
-    }
-}
-
-_CheckInternetConnection() {
-    curl --silent --connect-timeout 8 https://8.8.8.8 >/dev/null
-    local result=$?
-    test $result -eq 0 || echo "No internet connection!" >&2
-    return $result
-}
-
-_CheckArchNews() {
-    local conf=/etc/eos-update-notifier.conf
-
-    if [ -z "$CheckArchNewsForYou" ] && [ -r $conf ] ; then
-        source $conf
-    fi
-
-    if [ "$CheckArchNewsForYou" = "yes" ] ; then
-        local news="$(yay -Pw)"
-        if [ -n "$news" ] ; then
-            echo "Arch news:" >&2
-            echo "$news" >&2
-            echo "" >&2
-            # read -p "Press ENTER to continue (or Ctrl-C to stop): "
-        else
-            echo "No Arch news." >&2
-        fi
-    fi
-}
-
-UpdateArchPackages() {
-    # Updates Arch packages.
-
-    _CheckInternetConnection || return 1
-
-    _CheckArchNews
-
-    #local updates="$(yay -Qu --repo)"
-    local updates="$(checkupdates)"
-    if [ -n "$updates" ] ; then
-        echo "Updates from upstream:" >&2
-        echo "$updates" | sed 's|^|    |' >&2
-        _GeneralCmdCheck sudo pacman -Syu "$@"
-        return 0
-    else
-        echo "No upstream updates." >&2
-        return 1
-    fi
-}
-
-UpdateAURPackages() {
-    # Updates AUR packages.
-
-    _CheckInternetConnection || return 1
-
-    local updates
-    if [ -x /usr/bin/yay ] ; then
-        updates="$(yay -Qua)"
-        if [ -n "$updates" ] ; then
-            echo "Updates from AUR:" >&2
-            echo "$updates" | sed 's|^|    |' >&2
-            _GeneralCmdCheck yay -Syua "$@"
-        else
-            echo "No AUR updates." >&2
-        fi
-    else
-        echo "Warning: /usr/bin/yay does not exist." >&2
-    fi
-}
-
-UpdateAllPackages() {
-    # Updates all packages in the system.
-    # Upstream (i.e. Arch) packages are updated first.
-    # If there are Arch updates, you should run
-    # this function a second time to update
-    # the AUR packages too.
-
-    UpdateArchPackages || UpdateAURPackages
-}
-
+##
+## October 2021: removed many obsolete functions. If you still need them, please look at
+## https://github.com/EndeavourOS-archive/EndeavourOS-archiso/raw/master/airootfs/etc/skel/.bashrc
 
 _open_files_for_editing() {
     # Open any given document file(s) for editing (or just viewing).
-    # Note1: Do not use for executable files!
-    # Note2: uses mime bindings, so you may need to use
-    #        e.g. a file manager to make some file bindings.
+    # Note1:
+    #    - Do not use for executable files!
+    # Note2:
+    #    - Uses 'mime' bindings, so you may need to use
+    #      e.g. a file manager to make proper file bindings.
 
-    local progs="xdg-open exo-open"     # One of these programs is used.
-    local prog
-    for prog in $progs ; do
-        if [ -x /usr/bin/$xx ] ; then
-            $prog "$@" >& /dev/null &
-            return
-        fi
-    done
-    echo "Sorry, none of programs [$progs] is found." >&2
-    echo "Tip: install one of packages" >&2
-    for prog in $progs ; do
-        echo "    $(pacman -Qqo "$prog")" >&2
-    done
+    if [ -x /usr/bin/exo-open ] ; then
+        echo "exo-open $@" >&2
+        setsid exo-open "$@" >& /dev/null
+        return
+    fi
+    if [ -x /usr/bin/xdg-open ] ; then
+        for file in "$@" ; do
+            echo "xdg-open $file" >&2
+            setsid xdg-open "$file" >& /dev/null
+        done
+        return
+    fi
+
+    echo "$FUNCNAME: package 'xdg-utils' or 'exo' is required." >&2
 }
 
 #------------------------------------------------------------
@@ -155,6 +82,7 @@ _open_files_for_editing() {
 ##
 
 # alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
+# alias pacdiff=eos-pacdiff
 ################################################################################
 
 # Alias definitions.
@@ -163,7 +91,7 @@ _open_files_for_editing() {
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+        . ~/.bash_aliases
 fi
 
 set -o vi
