@@ -12,6 +12,13 @@ alias ll='ls -alhF'
 
 alias grep='grep --color=auto'
 
+# https://www.reddit.com/r/bash/comments/1eoc5t1/what_are_good_common_aliases_that_you_use_in_bash/lhdw7br/
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
+alias mkdir='mkdir -pv'
+alias free='free -h'
+
+# The following command is ependent on fzf
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"

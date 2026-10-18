@@ -24,6 +24,9 @@ let g:mdip_imgname = 'image'
 " junegunn/vim-emoji
 set completefunc=emoji#complete
 
+" Replace :emoji_name: into Emojis
+nnoremap <leader>er :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
+
 " takac/vim-hardtime
 " let g:hardtime_default_on = 1
 
