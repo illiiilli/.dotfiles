@@ -21,6 +21,9 @@ let g:ale_fixers = {
 let g:mdip_imgdir = 'img'
 let g:mdip_imgname = 'image'
 
+" junegunn/vim-emoji
+set completefunc=emoji#complete
+
 " takac/vim-hardtime
 " let g:hardtime_default_on = 1
 
